@@ -142,8 +142,7 @@ contract sellingNFT is NFT,Share{
 
 uint256 public currentPrice;
 
-//event Sent(address indexed payee, uint256 amount, uint256 balance);
-//event Received(address indexed payer, uint tokenId, uint256 amount, uint256 balance);
+
 
 constructor(address _nftAddress, uint256 _currentPrice) public  {
 require(_nftAddress != address(0) && _nftAddress != address(this));
