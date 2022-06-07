@@ -53,7 +53,8 @@ contract Auction is ERC721,Share{
     bool public started;
     bool public ended;
     uint public endAt;
-    uint public tokenId;
+    uint256 public currentPrice;
+    //uint public tokenId;
     uint public share;
     address[] bidders;
     mapping(address => uint[]) public bids;
@@ -131,18 +132,16 @@ function start() external {
         ended = true;
         emit End(highestBidder, highestBid);
     }
-}
+
 
 
 
 
 
 //selling nft
-contract sellingNFT is NFT,Share{
 
-uint256 public currentPrice;
-
-
+//event Sent(address indexed payee, uint256 amount, uint256 balance);
+//event Received(address indexed payer, uint tokenId, uint256 amount, uint256 balance);
 
 constructor(address _nftAddress, uint256 _currentPrice) public  {
 require(_nftAddress != address(0) && _nftAddress != address(this));
@@ -151,7 +150,7 @@ nftAddress = ERC721(_nftAddress);
 currentPrice = _currentPrice;
 }
 
-function purchaseToken() public payable {
+function purchaseNft() public payable {
 require(msg.sender != address(0) && msg.sender != address(this));
 require(msg.value >= currentPrice);
 require(tokenExists[tokenId]);
